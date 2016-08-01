@@ -49,7 +49,7 @@ function coor2cell(num){
 }
 
 function isNotBlank(x,y){
-  if(map[x][y] == 1){
+  if(map[x][y] > 0){
     return true;
   }
 }
