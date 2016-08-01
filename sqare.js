@@ -20,8 +20,8 @@ var lightBlue = "#0191e4";
 var lighterBlue = "#cdecfe";
 var darkBlue = "#013553";
 
-var yellow = "#ff0";
-var green = "#0f0";
+var yellow = "#e4e401";
+var green = "#01e401";
 
 var left = [-1,0],
 up = [0,-1],
