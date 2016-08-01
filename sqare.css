@@ -63,8 +63,11 @@ section h2{
   background-color: #013553;
 }
 section button{
-  color: #ddd;
   background-color: #0191e4;
+}
+button{
+  color: #ddd;
+  background-color: #014c76;
   border-style: none;
   padding: 16px;
   font-size: 24px;
