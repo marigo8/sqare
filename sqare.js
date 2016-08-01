@@ -178,7 +178,7 @@ function gameOver(){
 // SETUP
 
 // font
-e.font = "32px Helvetica";
+e.font = cellSize/4+"px Helvetica";
 e.textAlign = "center";
 e.textBaseline = "middle";
 
