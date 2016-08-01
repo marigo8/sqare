@@ -173,6 +173,7 @@ function gameOver(){
   player.total = coinsMultiplied - movesMultiplied;
   print("resultTotal", player.total);
   document.querySelector("#gameover").style.display = "block";
+  document.querySelector("#restart").focus();
 }
 
 // SETUP
