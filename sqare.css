@@ -1,3 +1,13 @@
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+
 body{
   font-family: monospace;
   background-color: #013553;
