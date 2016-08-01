@@ -1,1 +1,42 @@
-hello world!
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./sqare.css" type="text/css" />
+  </head>
+  <body>
+    <h1>sqare</h1>
+    <div id="stats">
+      <p id="moves">moves: <span>0</span></p>
+      <p id="coins">coins: <span>0</span></p>
+    </div>
+    <div id="sqare">
+      
+      <canvas id="background" width="512" height="512">
+        If you are seeing this message, your browser does not support this game.
+      </canvas>
+      
+      <canvas id="entities" width="512" height="512"></canvas>
+      
+      
+    </div>
+    <div id="instructions">
+      <p>The <span style="color:#0191e4;">blue</span> "Sqare" is you.</p>
+      <p>The <span style="color:#cdecfe;">number</span> in the center of your Sqare is your battery life. The game is over when this hits 0.</p>
+      <p>The <span style="color:#0f0;">green</span> Sqares are batteries. Collect them to increase your battery life.</p>
+      <p>The <span style="color:#ff0;">yellow</span> Sqares are coins. Collecting them is your primary objective.</p>
+      <p>You are awarded more coins for collecting more coins in fewer moves.</p>
+      <p style="font-weight:bold;">Use the arrow keys or WASD to move.</p>
+    </div>
+    <div id="gameover">
+      <section>
+        <h2>game over</h2>
+        <p id="resultCoins">coins: <span></span></p>
+        <p id="resultMoves">moves: <span></span></p>
+        <p id="resultTotal">TOTAL: <span></span></p>
+        <button onclick="window.location='./index.html'">RESTART</button>
+      </section>
+    </div>
+    <script type="text/javascript" src="./sqare.js"></script>
+  </body>
+</html>
