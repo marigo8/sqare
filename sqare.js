@@ -14,7 +14,6 @@ for(var h = 0; h < coorHeight; h++){
     map[h].push(0);
   }
 }
-console.log(map);
 
 var blue = "#014c76";
 var lightBlue = "#0191e4";
@@ -59,7 +58,6 @@ function randCoor(){
   do{
     x = Math.floor(Math.random()*coorWidth);
     y = Math.floor(Math.random()*coorHeight);
-    console.log(x+", "+y);
   }while(isNotBlank(x,y));
   return [x,y];
 }
@@ -82,7 +80,6 @@ function drawEntity(ent){
   if(ent.maxBattery){
     drawBattery(ent);
   }
-  console.log(x+", "+y);
   map[ent.x][ent.y]++;
 }
 function clearCell(x,y){
@@ -123,9 +120,7 @@ function move(ent,directions){
   }
   drawEntity(ent);
   var collisions = testCollision(ent);
-  console.log(collision);
   if(collisions){
-    console.log("COLLISION!");
     switch(ent){
       case player:
         for(var i = 0, n = collisions.length, collision; i < n; i++){
@@ -133,7 +128,6 @@ function move(ent,directions){
           switch(collision){
             case coin:
               player.coins++;
-              console.log(player.coins);
               relocateEntity(coin);
               print("coins", player.coins);
               break;
@@ -155,7 +149,6 @@ function move(ent,directions){
 }
 function testCollision(ent){
   var x = ent.x, y = ent.y;
-  console.log("foo: "+x+", "+y);
   if(map[x][y] > 1){
     var array = [];
     for(var i = 0, n = entityList.length, thisEntity; i < n; i++){
@@ -166,7 +159,6 @@ function testCollision(ent){
         }
       }
     }
-    console.log(array);
     return array;
   }else{
     return false;
