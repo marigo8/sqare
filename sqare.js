@@ -215,6 +215,9 @@ initEntity(extraBattery,randCoor());
 // EVENT LISTENERS
 document.addEventListener("keydown",function(key){
   var direction;
+  if([32, 37, 38, 39, 40].indexOf(key.keyCode) > -1) {
+    key.preventDefault();
+  }
   switch(key.keyCode){
     case 37:
     case 65:
