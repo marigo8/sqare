@@ -62,9 +62,6 @@ section h2{
   margin: 0;
   background-color: #013553;
 }
-section button{
-  background-color: #0191e4;
-}
 button{
   color: #ddd;
   background-color: #014c76;
@@ -74,6 +71,12 @@ button{
   font-weight: bold;
   margin-bottom: 16px;
 }
-button:focus{
-  outline: none;
+section button{
+  background-color: #0191e4;
+}
+button:hover{
+  background-color: #014065;
+}
+section button:hover{
+  background-color: #0171b2;
 }
