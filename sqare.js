@@ -80,17 +80,17 @@ function drawEntity(ent){
   if(ent.maxBattery){
     drawBattery(ent);
   }
-  map[ent.x][ent.y]++;
 }
 function clearCell(x,y){
   x = coor2cell(x);
   y = coor2cell(y);
-  e.clearRect(x,y,cellSize,cellSize);
+  e.clearRect(x+cellSize/4,y+cellSize/4,cellSize/2,cellSize/2);
 }
 function initEntity(ent,xy){
   ent.x = xy[0];
   ent.y = xy[1];
   drawEntity(ent);
+  map[ent.x][ent.y]++;
 }
 function relocateEntity(ent){
   map[ent.x][ent.y]--;
@@ -98,7 +98,6 @@ function relocateEntity(ent){
 }
 function refreshEntity(ent){
   drawEntity(ent);
-  map[ent.x][ent.y]--;
 }
 function move(ent,directions){
   var newX = ent.x + directions[0];
@@ -111,40 +110,56 @@ function move(ent,directions){
     return false;
   }
   
-  clearCell(ent.x,ent.y);
   map[ent.x][ent.y]--;
-  ent.x = newX;
-  ent.y = newY;
-  if(ent.maxBattery){
-    ent.battery--;
-  }
+  
+  clearCell(ent.x,ent.y);
+  ent.x += .5*directions[0];
+  ent.y += .5*directions[1];
   drawEntity(ent);
-  var collisions = testCollision(ent);
-  if(collisions){
-    switch(ent){
-      case player:
-        for(var i = 0, n = collisions.length, collision; i < n; i++){
-          collision = collisions[i];
-          switch(collision){
-            case coin:
-              player.coins++;
-              relocateEntity(coin);
-              print("coins", player.coins);
-              break;
-            case extraBattery:
-              player.battery += player.maxBattery/2;
-              if(player.battery > player.maxBattery){
-                player.battery = player.maxBattery;
-              }
-              relocateEntity(extraBattery);
-              refreshEntity(ent);
-              break;
-          }
-        }
+  setTimeout(function(){
+    clearCell(ent.x,ent.y);
+    ent.x = newX;
+    ent.y = newY;
+    if(ent.maxBattery){
+      ent.battery--;
     }
-  }
-  player.moves++;
-  print("moves", player.moves);
+    drawEntity(ent);
+    map[ent.x][ent.y]++;
+    console.log(ent.x);
+  console.log(ent.y);
+  var collisions = testCollision(ent);
+    if(collisions){
+      switch(ent){
+        case player:
+          for(var i = 0, n = collisions.length, collision; i < n; i++){
+            collision = collisions[i];
+            switch(collision){
+              case coin:
+                player.coins++;
+                relocateEntity(coin);
+                print("coins", player.coins);
+                break;
+              case extraBattery:
+                player.battery += player.maxBattery/2;
+                if(player.battery > player.maxBattery){
+                  player.battery = player.maxBattery;
+                }
+                relocateEntity(extraBattery);
+                refreshEntity(ent);
+                break;
+              
+            }
+          }
+        
+      }
+    }
+    player.moves++;
+    print("moves", player.moves);
+    if(player.battery == 0){
+      gameOver();
+    }
+  },50);
+  
   return true;
 }
 function testCollision(ent){
@@ -245,9 +260,6 @@ document.addEventListener("keydown",function(key){
   if(player.battery > 0){
     if(direction){
       move(player,direction);
-      if(player.battery == 0){
-        gameOver();
-      }
     }
   }
 });
