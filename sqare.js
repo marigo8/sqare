@@ -15,6 +15,8 @@ for(var h = 0; h < coorHeight; h++){
   }
 }
 
+var animating = false;
+
 var blue = "#014c76";
 var lightBlue = "#0191e4";
 var lighterBlue = "#cdecfe";
@@ -116,6 +118,7 @@ function move(ent,directions){
   ent.x += .5*directions[0];
   ent.y += .5*directions[1];
   drawEntity(ent);
+  animating = true;
   setTimeout(function(){
     clearCell(ent.x,ent.y);
     ent.x = newX;
@@ -125,9 +128,7 @@ function move(ent,directions){
     }
     drawEntity(ent);
     map[ent.x][ent.y]++;
-    console.log(ent.x);
-  console.log(ent.y);
-  var collisions = testCollision(ent);
+    var collisions = testCollision(ent);
     if(collisions){
       switch(ent){
         case player:
@@ -158,6 +159,7 @@ function move(ent,directions){
     if(player.battery == 0){
       gameOver();
     }
+    animating = false;
   },50);
   
   return true;
@@ -231,10 +233,13 @@ initEntity(extraBattery,randCoor());
 
 // EVENT LISTENERS
 document.addEventListener("keydown",function(key){
-  var direction;
+  if(animating){
+    return false;
+  }
   if([32, 37, 38, 39, 40].indexOf(key.keyCode) > -1) {
     key.preventDefault();
   }
+  var direction;
   switch(key.keyCode){
     case 37:
     case 65:
